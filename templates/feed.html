@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}Feed{% endblock %}
+{% block content %}
+<section id="map-container">
+    <div id="map"></div>
+</section>
+
+<button id="newbutton" onclick="showAddNewPost()">Add a new photo</button>
+<section class="newpost-container" id="c">
+    <form action="/feed" method="POST" enctype="multipart/form-data">
+        <p>
+        <div id="fileupload">
+            <label for="image">Upload photo</label>
+            <input type="file" name="image" id="image" hidden>
+            <input type="hidden" name="user" value="{{ user_id }}">
+        </div>
+        <p>
+        <div class="text_and_category">
+            Add text:
+            <p>
+            <textarea name="text" rows="1" cols="50"></textarea>
+            <p>
+                <form>
+                    Add a category: 
+                    <select name = "dropdown">
+                        <option value = "All">All</option>
+                        <option value = "nsfw">NSFW</option>
+                        <option value = "nsfw">NSFW</option>
+                    </select>
+                </form>
+            <p>
+            <input type="submit" value="Send">
+        </div>
+    </form>
+</section>
+
+<p>
+<div class="sort">
+    <form action="#">
+        <label id="sort">Sorts posts by: </label>
+        <select name = "dropdown">
+            <option value = "Scenery">All</option>
+            <option value = "nsfw">NSFW</option>
+        </select>
+    </form>
+</div>
+
+<section class="posts-container">
+    {% for post in posts %}
+        <div class="posts">
+        
+        <ul>
+            <label id="post_text">{{ post['teksti'] }}</label>
+            {{ post['data'] }}
+            <p>
+                <div class="photo">
+                    <img src="data:image/jpeg;base64, {{ post['image_data'] }} "><img>
+                </div>
+            <p>
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+<script src={{ url_for('static', filename='script.js') }}></script>
+<script>
+    setMarkers()
+</script>
+
+
+{% endblock %}
