@@ -17,10 +17,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 //     .bindPopup('<h1>Nitor</h1>')
 //     .openPopup();
 
-const setMarker = (lat, long) => {
+const setMarker = (lat, long, text) => {
     // console.log(post)
     L.marker([lat, long]).addTo(map)
-        .bindPopup('kuva')
+        .bindPopup(text)
         // .bindPopup('<img src="data:image/jpeg;base64, {{ data }} "><img>')
 }
 
@@ -39,10 +39,10 @@ const setMarkers = () => {
     // posts = posts.map(post => JSON.parse(post))
     // console.log(posts)
     // console.log(JSON.parse(posts))
-    setMarker(66.1690857076364, 29.161765586689256)
-    setMarker(66.16769778169346, 29.13931099097882)
-    setMarker(66.16944885418808, 29.155163414833567)
-    setMarker(66.16988654330092, 29.170672500752087)
+    setMarker(66.1690857076364, 29.161765586689256, 'Hyvä luistelusää. Melkein yhtä hyvin meni pelit kuin kajaanin hokilla')
+    setMarker(66.16769778169346, 29.13931099097882, 'Kiitos mukavasta reissusta. Heinäkuussa uudelleen')
+    setMarker(66.16944885418808, 29.155163414833567, 'Aurinkorasva unohtui....')
+    setMarker(66.16988654330092, 29.170672500752087, 'Rantaloma teki hyvää, on tuo kuusamon tropiikki ihmeellinen paikka')
 }
 
 const showAddNewPost = () => {

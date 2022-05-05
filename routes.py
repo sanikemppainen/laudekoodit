@@ -48,6 +48,5 @@ def feed():
         for post in posts
     ]
     
-    print(posts[0]['lat'])
     json_posts = [json.dumps(post) for post in [{'lat': p['lat'], 'long': p['long']} for p in posts]]
     return render_template("feed.html", posts=posts, json_posts=json_posts)
